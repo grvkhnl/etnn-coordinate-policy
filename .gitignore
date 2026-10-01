@@ -1,0 +1,10 @@
+.DS_Store
+.quarto/
+**/.quarto/
+**/*.quarto_ipynb
+/tmp/
+report/*.aux
+report/*.log
+report/*.out
+report/*.toc
+report/*.tex
