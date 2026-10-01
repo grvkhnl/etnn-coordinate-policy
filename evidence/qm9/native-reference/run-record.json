@@ -1,0 +1,56 @@
+{
+  "best_validation_epoch": 1000,
+  "best_validation_mae_debye": 0.030984794147111274,
+  "elapsed_seconds_this_invocation": 39806.30840697186,
+  "end_epoch": 1000,
+  "epochs_executed_this_invocation": 1000,
+  "final_test_mae_debye": 0.03181491831630251,
+  "interval_tests_executed": 100,
+  "optimizer_weight_decay": 0.00001,
+  "paper_overrides": {
+    "training_epochs": {
+      "paper_faithful": 1000,
+      "pinned_code": 350
+    },
+    "weight_decay": {
+      "paper_faithful": 0.00001,
+      "pinned_code": 1E-16
+    }
+  },
+  "passed": true,
+  "protocol": "paper-faithful",
+  "resolved_training_epochs": 1000,
+  "restart_policy": {
+    "authoritative_start_epoch": 0,
+    "consequence": "The authoritative record is accepted only after one uninterrupted epoch-0-to-1000 invocation.",
+    "existing_checkpoint_behavior": "reject",
+    "upstream_checkpoint_includes_rng_state": false
+  },
+  "scheduler_last_epoch": 1000,
+  "scheduler_t_max": 333,
+  "schema_version": 1,
+  "source_adaptations": [
+    {
+      "mathematical_effect": "none",
+      "name": "pyg_batch_slice_device_alignment",
+      "operation": "Move private PyG rank-slice tensors to the position device without changing their values."
+    },
+    {
+      "mathematical_effect": "none",
+      "name": "model_device_alignment",
+      "operation": "Move the native model to the CUDA device selected by main_qm9.py before optimizer construction."
+    },
+    {
+      "mathematical_effect": "none",
+      "name": "native_script_dispatch",
+      "operation": "Execute the checked-in main_qm9.py as __main__ so Hydra retains its native file-relative configuration lookup."
+    },
+    {
+      "mathematical_effect": "none",
+      "name": "metric_mirror",
+      "operation": "Mirror native W&B log payloads to JSON Lines."
+    }
+  ],
+  "start_epoch": 0,
+  "uninterrupted_epoch_0_to_1000": true
+}

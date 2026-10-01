@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "variant_index": 0,
+  "model": {
+    "_target_": "topobench.nn.backbones.combinatorial.etnn_coordinate_policy.ETNNCoordinatePolicy",
+    "in_channels": 32,
+    "hidden_channels": 32,
+    "out_channels": 32,
+    "neighborhoods": [
+      "up_adjacency-0",
+      "up_adjacency-1",
+      "up_adjacency-2",
+      "up_incidence-0",
+      "down_incidence-1",
+      "up_incidence-1",
+      "down_incidence-2"
+    ],
+    "num_layers": 2,
+    "dropout": 0.0,
+    "activation": "silu",
+    "use_batch_norm": false,
+    "coordinate_policy": "physical",
+    "physical_coordinate_attr": "pos",
+    "pos_update": false,
+    "coordinate_update_scale": 0.1,
+    "coordinate_update_neighborhood": "up_adjacency-0",
+    "hausdorff_dists": true,
+    "normalize_invariants": true,
+    "invariant_normalization": "batch_norm",
+    "invariant_normalization_eps": 1.0E-8
+  },
+  "trainer": {
+    "_target_": "lightning.pytorch.trainer.Trainer",
+    "min_epochs": 1,
+    "max_epochs": 10,
+    "check_val_every_n_epoch": 1,
+    "deterministic": false,
+    "inference_mode": false,
+    "detect_anomaly": false,
+    "limit_train_batches": 50,
+    "limit_val_batches": 10,
+    "limit_test_batches": 10
+  },
+  "dataset": {
+    "parameters": {
+      "qm9_target_index": 0,
+      "num_features": [
+        11,
+        4
+      ],
+      "num_classes": 1,
+      "task": "regression",
+      "loss_type": "mse",
+      "monitor_metric": "mae",
+      "task_level": "graph",
+      "max_dim_if_lifted": 3,
+      "preserve_edge_attr_if_lifted": true
+    },
+    "split_params": {
+      "learning_setting": "inductive",
+      "data_seed": 0,
+      "split_type": "random",
+      "k": 10,
+      "train_prop": 0.5
+    },
+    "dataloader_params": {
+      "batch_size": 128,
+      "num_workers": 0,
+      "pin_memory": false
+    }
+  }
+}

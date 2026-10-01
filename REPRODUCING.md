@@ -16,10 +16,10 @@ From the repository root, run:
 quarto render report/from-equations-to-code.qmd
 ```
 
-The command writes `report/from-equations-to-code.pdf`. The report source is
-prose-driven and does not rerun the computational studies. Figures are versioned
-alongside the source so the document can be rendered without downloading
-datasets, checkpoints, or private execution records.
+The command writes `report/from-equations-to-code.pdf`. Rendering does not rerun
+the computational studies. Figures and compact evidence records are versioned
+alongside the source, so the document can be rendered without downloading
+datasets or checkpoints.
 
 ## Immutable software context
 
@@ -28,13 +28,25 @@ The report describes the TopoBench fork at commit
 implementation at commit `639e35e`. These revisions are intentionally pinned
 because later changes to either repository may alter implementation details.
 
-The public comparison notebook and validation artifacts are available in the
-pinned TopoBench fork:
+The comparison notebook and complete challenge submission context are available
+in the pinned TopoBench fork:
 
 - [comparison notebook](https://github.com/grvkhnl/TopoBench/blob/a0bd4113f431efce8eb1ca38dcfe4837ab995779/2026_tdl_challenge/submissions/etnn_coordinate_policy_comparison.ipynb)
 - [comparison figures and compact records](https://github.com/grvkhnl/TopoBench/tree/a0bd4113f431efce8eb1ca38dcfe4837ab995779/2026_tdl_challenge/submissions/assets/etnn_coordinate_policy)
 - [GraphUniverse result records](https://github.com/grvkhnl/TopoBench/tree/a0bd4113f431efce8eb1ca38dcfe4837ab995779/2026_tdl_challenge/outputs)
 
-Large datasets, model checkpoints, machine-specific scripts, and internal
-execution logs are intentionally not redistributed in this portfolio
-repository.
+The compact records used for the report's tables and figures are also included
+under [`evidence/`](evidence/), together with SHA-256 checksums. Large datasets
+and model checkpoints are not redistributed.
+
+## Checking evidence integrity
+
+From the repository root, run:
+
+```bash
+shasum -a 256 -c evidence/SHA256SUMS
+```
+
+The GraphUniverse records are unchanged copies of the committed challenge
+outputs. The QM9 JSON records retain the scientific protocol, checks, metrics,
+and source revisions while omitting checkpoint paths and hardware identifiers.

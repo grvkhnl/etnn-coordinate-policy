@@ -1,24 +1,28 @@
 # ETNN Coordinate Policy
 
-**A TopoBench-native implementation of E(n)-Equivariant Topological Neural
-Networks across coordinate-free, structural-coordinate, and physical-coordinate
-settings.**
+**A technical implementation report and public validation record for an
+E(n)-Equivariant Topological Neural Network with coordinate-free, structural,
+and physical coordinate policies.**
 
-This project tells the implementation story behind the ETNN Coordinate Policy,
-the joint Track 2 winner of the 2026 Topological Deep Learning Challenge. The
-work adapts the E(n)-Equivariant Topological Neural Network (ETNN) architecture
-to TopoBench while making the meaning of coordinates an explicit, reproducible
-model choice.
+This project tells the implementation story behind ETNN-CoordinatePolicy, which
+the challenge organizers named a [joint first-place winner of Track
+2](https://geometric-intelligence.github.io/topobench/tdl-challenge-2026/index.html#winners)
+in the 2026 Topological Deep Learning Challenge. The work adapts the
+E(n)-Equivariant Topological Neural Network (ETNN) architecture to TopoBench
+while making the meaning of coordinates an explicit, reproducible model choice.
+The production implementation remains in the pinned TopoBench fork; this
+repository publishes the report, figures, and compact evidence records.
 
 [Read the technical report](report/from-equations-to-code.pdf) |
+[Inspect the validation evidence](evidence/) |
 [View the upstream pull request](https://github.com/geometric-intelligence/TopoBench/pull/391) |
 [Inspect the implementation](https://github.com/grvkhnl/TopoBench/blob/a0bd4113f431efce8eb1ca38dcfe4837ab995779/topobench/nn/backbones/combinatorial/etnn_coordinate_policy.py) |
 [Open the comparison notebook](https://github.com/grvkhnl/TopoBench/blob/a0bd4113f431efce8eb1ca38dcfe4837ab995779/2026_tdl_challenge/submissions/etnn_coordinate_policy_comparison.ipynb)
 
-> **Upstream status:** The implementation is available at the immutable fork
-> revision `a0bd4113f431efce8eb1ca38dcfe4837ab995779`. TopoBench PR #391 remains
-> open for upstream review, so this repository should not be interpreted as an
-> official TopoBench release.
+> **Upstream status at v1.1.0:** The implementation is available at the
+> immutable fork revision `a0bd4113f431efce8eb1ca38dcfe4837ab995779`.
+> TopoBench PR #391 remains open for upstream review, so this repository is not
+> an official TopoBench release.
 
 ## Why a coordinate policy?
 
@@ -50,8 +54,8 @@ coordinates through an E(n)-equivariant radial rule.
 - Laplacian structural coordinates lifted from vertices to higher-rank cells.
 - Physical cell centroids, diameters, and directed Hausdorff-style invariants.
 - Optional equivariant coordinate updates with geometry recomputed per layer.
-- Focused tests, public configurations, and a reviewer-facing comparison
-  notebook integrated with TopoBench.
+- Focused tests, public configurations, and an executed comparison notebook
+  integrated with TopoBench.
 
 The full design rationale, mathematical notation, implementation excerpts, and
 limitations are developed in
@@ -92,6 +96,11 @@ TopoBench lifting exactly reproduces the paper's molecule-specific complex.
 ├── LICENSE
 ├── REPRODUCING.md
 ├── THIRD_PARTY_NOTICES.md
+├── evidence
+│   ├── README.md
+│   ├── SHA256SUMS
+│   ├── graphuniverse
+│   └── qm9
 └── report
     ├── from-equations-to-code.pdf
     ├── from-equations-to-code.qmd
@@ -108,6 +117,7 @@ software context used by the report:
 - [Focused backbone tests](https://github.com/grvkhnl/TopoBench/blob/a0bd4113f431efce8eb1ca38dcfe4837ab995779/test/nn/backbones/combinatorial/test_etnn_coordinate_policy.py)
 - [Public model configurations](https://github.com/grvkhnl/TopoBench/tree/a0bd4113f431efce8eb1ca38dcfe4837ab995779/configs/model/combinatorial)
 - [Executed comparison notebook](https://github.com/grvkhnl/TopoBench/blob/a0bd4113f431efce8eb1ca38dcfe4837ab995779/2026_tdl_challenge/submissions/etnn_coordinate_policy_comparison.ipynb)
+- [Public validation records](evidence/)
 
 ## Attribution
 
@@ -125,7 +135,9 @@ original ETNN paper and TopoBench.
 
 ## License
 
-Original material in this repository is released under the MIT License.
-Quoted or adapted TopoBench code retains its original MIT notice. Bundled
-JetBrains Mono Nerd Font files are distributed under the SIL Open Font License;
-see [`report/fonts/OFL.txt`](report/fonts/OFL.txt).
+Original prose and figures in this repository are released under the Creative
+Commons Attribution 4.0 International license. Quoted or adapted TopoBench code
+retains its original MIT notice. Bundled JetBrains Mono Nerd Font files are
+distributed under the SIL Open Font License; see
+[`report/fonts/OFL.txt`](report/fonts/OFL.txt) and
+[`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).

@@ -9,11 +9,11 @@ type: software
 authors:
   - family-names: Khanal
     given-names: Gaurav
-version: 1.0.0
+version: 1.1.0
 date-released: 2026-10-01
 repository-code: https://github.com/grvkhnl/etnn-coordinate-policy
 url: https://github.com/grvkhnl/etnn-coordinate-policy
-license: MIT
+license: CC-BY-4.0
 abstract: >-
   A technical implementation report and validation record for a unified
   TopoBench-native ETNN backbone with explicit coordinate-free, structural

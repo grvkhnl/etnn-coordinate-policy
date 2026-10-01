@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "purpose": "Reduced end-to-end integration check of the public TopoBench physical-coordinate path; not a paper-comparable performance study.",
+  "source": {
+    "topobench_commit": "16078dc35db1a621dd232e9f43549ba8088925e2",
+    "dataset": "QM9",
+    "target_index": 0,
+    "seed": 42,
+    "epochs": 10,
+    "batch_size": 128,
+    "train_batches_per_epoch": 50,
+    "validation_batches_per_epoch": 10,
+    "test_batches": 10
+  },
+  "variants": [
+    {
+      "variant_index": 0,
+      "name": "fixed_coordinates",
+      "position_updates": false,
+      "hausdorff_channels": true,
+      "test_mae_debye": 0.8185397386550903,
+      "elapsed_seconds": 3508
+    },
+    {
+      "variant_index": 1,
+      "name": "dynamic_coordinates",
+      "position_updates": true,
+      "hausdorff_channels": false,
+      "test_mae_debye": 0.8737443089485168,
+      "elapsed_seconds": 704
+    },
+    {
+      "variant_index": 2,
+      "name": "full_physical_policy",
+      "position_updates": true,
+      "hausdorff_channels": true,
+      "test_mae_debye": 0.8689649701118469,
+      "elapsed_seconds": 5961
+    }
+  ]
+}

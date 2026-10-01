@@ -1,0 +1,67 @@
+{
+  "artifacts": {
+    "epoch_metrics": "epoch-metrics.csv"
+  },
+  "execution_adaptations": [
+    {
+      "mathematical_effect": "none",
+      "name": "native_to_topobench_batch_translation",
+      "operation": "Validate and clone canonical native batch tensors into the TopoBench parity-model contract."
+    },
+    {
+      "mathematical_effect": "none",
+      "name": "checkpoint_and_metric_capture",
+      "operation": "Persist model, optimizer, scheduler, RNG, and compact CSV metric state without changing the training update."
+    }
+  ],
+  "interpretation": "Controlled port validation using native QM9CC inputs and outer training protocol; not an independent molecular-lifting result.",
+  "model": {
+    "class": "ETNNQM9Parity",
+    "initialization": "complete state translated from the seed-42 native model",
+    "substituted_component": "ETNN model core only",
+    "trainable_parameters": 1497871
+  },
+  "passed": true,
+  "protocol": {
+    "batch_size": 96,
+    "dataset": "atom_bond__super__max__self",
+    "experiment": "experiment_1",
+    "gradient_clip_norm": 1.0,
+    "learning_rate": 0.0005,
+    "nsaph_commit": "639e35ea1440515f80ddda98a319952d10344fda",
+    "parity_gate_sha256": "39f5808e31f825aeb81d0d1188d9583271ab301f23386b1380cf64bdc39a7765",
+    "protocol": "paper-faithful",
+    "resolved_epochs": 1000,
+    "scheduler_t_max": 333,
+    "schema_version": 1,
+    "seed": 42,
+    "stop_epoch": 1000,
+    "target": "mu",
+    "target_mad": 1.1681129932403564,
+    "target_mean": 2.6746811866760254,
+    "target_unit": "D",
+    "topobench_commit": "2286a7b0bd8dae02a7d596b2bc182b6f77b8010e",
+    "train_test_splits": "egnn",
+    "training_program_sha256": "7309b953957787f705b8a728bebac2eadb7b1b0c4c3ffe4c807e8f2a8a2a2720",
+    "weight_decay": 0.00001
+  },
+  "results": {
+    "best_validation_epoch": 999,
+    "best_validation_mae_debye": 0.030400940332863783,
+    "elapsed_seconds_this_invocation": 42296.946399595996,
+    "end_epoch": 1000,
+    "final_test_mae_debye": 0.031216726196508338,
+    "last_learning_rate": 1.1125462397260089E-8,
+    "mean_epoch_duration_seconds": 41.87388977963898,
+    "start_epoch": 0
+  },
+  "schema_version": 1,
+  "source": {
+    "nsaph_commit": "639e35ea1440515f80ddda98a319952d10344fda",
+    "nsaph_working_tree_clean": true,
+    "parity_gate_sha256": "39f5808e31f825aeb81d0d1188d9583271ab301f23386b1380cf64bdc39a7765",
+    "topobench_commit": "2286a7b0bd8dae02a7d596b2bc182b6f77b8010e",
+    "topobench_working_tree_clean": true,
+    "training_program_sha256": "7309b953957787f705b8a728bebac2eadb7b1b0c4c3ffe4c807e8f2a8a2a2720"
+  }
+}

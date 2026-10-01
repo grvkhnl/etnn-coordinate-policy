@@ -79,7 +79,7 @@ lang: en
 **Document type:** Technical implementation report  
 **Implementation revision:** `a0bd4113f431efce8eb1ca38dcfe4837ab995779`  
 **Reference implementation revision:** NSAPH commit `639e35e`  
-**Report version:** 1.0
+**Report version:** 1.1
 
 The corresponding implementation is submitted to TopoBench in
 [PR #391](https://github.com/geometric-intelligence/TopoBench/pull/391). The
@@ -94,6 +94,10 @@ the coordinate-policy abstraction, physical-coordinate extension, and layered
 validation strategy described here are the implementation developed for that
 setting.
 
+The organizers' [official results](https://geometric-intelligence.github.io/topobench/tdl-challenge-2026/index.html#winners)
+name ETNN-CoordinatePolicy, submitted by Team E(n)igma in PR #391, a joint
+first-place winner of Track 2.
+
 The original architecture, mathematical framework, and equivariance results
 are described in the ETNN paper [@battiloro2024etnn]. The official
 implementation maintained by the NSAPH project is used as the reference for
@@ -103,10 +107,11 @@ and readout contracts into which the implementation is integrated
 [@telyatnikov2025topobench].
 
 Short excerpts from the TopoBench implementation are reproduced to connect the
-mathematics to executable code. The repository is distributed under the MIT
-License; copyright remains with the TopoBench Team. Excerpts are lightly elided
-only where surrounding validation or documentation would obscure the specific
-mechanism under discussion.
+mathematics to executable code. Original prose and figures in this report are
+licensed under Creative Commons Attribution 4.0 International. TopoBench code
+excerpts retain the project's MIT License and copyright. Excerpts are lightly
+elided only where surrounding validation or documentation would obscure the
+specific mechanism under discussion.
 
 Paper-derived formulas carry point-of-use citations with original locators;
 uncited displays are TopoBench-specific definitions or derivations.
@@ -1101,7 +1106,7 @@ rank-0 coordinates from `pos`, applies `GraphTriangleInducedCC`, constructs
 physical relation invariants, and enables both learned position updates and
 directed Hausdorff-style channels.
 
-A reduced end-to-end integration study executed three physical variants to
+A bounded end-to-end integration study executed three physical variants to
 completion. Each used seed 42, batch size 128, 10 epochs, 50 training batches,
 10 validation batches, and 10 test batches per epoch.
 
@@ -1201,7 +1206,7 @@ The validation evidence should be read with four boundaries in mind:
 
 1. GraphUniverse evaluates the `none` and `structural_lappe` policies, not
    physical geometry.
-2. The reduced public-path QM9 study checks integration but is not a
+2. The bounded public-path QM9 study checks integration but is not a
    paper-comparable performance experiment.
 3. The protocol-matched study substitutes only the model core and reuses native
    QM9CC construction and invariants.
@@ -1308,54 +1313,50 @@ URL: https://github.com/NSAPH-Projects/topological-equivariant-networks
 Repository behavior is cited as software behavior, not attributed to a paper
 equation unless the paper independently specifies it.
 
-## Validation revisions and evidence records
+## Validation revisions and public evidence records
 
-The validation studies were completed before the final report revision. Their
-exact code states and evidence records are listed below so that the reported
-numbers are not implicitly attributed to a later checkout. The changes from the
-QM9 validation revision to the report revision in the shared ETNN core and
-parity harness are editorial comments only; the executable statements are
-unchanged.
+The validation studies predate this report revision. Each result below is tied
+to the code revision that produced it, and the compact records used for the
+tables and figures are distributed in the repository's `evidence/` directory.
+The accompanying `evidence/SHA256SUMS` file provides an integrity manifest.
 
 **GraphUniverse coordinate-free and structural policies.** TopoBench revision
-`776dcf4972974d17df36869f84e8f84302ec2f2c`; evidence: two committed
-`results.json` files.
+`776dcf4972974d17df36869f84e8f84302ec2f2c`; evidence:
+[`coordinate-free-results.json`](../evidence/graphuniverse/coordinate-free-results.json)
+and
+[`structural-lappe-results.json`](../evidence/graphuniverse/structural-lappe-results.json).
 
-**Reduced public physical path.** TopoBench revision
-`16078dc35db1a621dd232e9f43549ba8088925e2`; evidence: three archived
-configuration/metric pairs.
+**Bounded public physical path.** TopoBench revision
+`16078dc35db1a621dd232e9f43549ba8088925e2`; evidence:
+[`summary.json`](../evidence/qm9/physical-integration/summary.json) and the three
+public configuration/epoch-metric pairs in `evidence/qm9/physical-integration/`.
 
 **QM9 adapter and model-core parity.** TopoBench revision
 `2286a7b0bd8dae02a7d596b2bc182b6f77b8010e`; evidence:
-`real-native-batch-model-parity.json`.
+[`model-parity.json`](../evidence/qm9/topobench-core/model-parity.json).
 
 **Protocol-matched TopoBench ETNN core.** TopoBench revision
 `2286a7b0bd8dae02a7d596b2bc182b6f77b8010e`; evidence:
-`training-record.json` and `epoch-metrics.csv`.
+[`training-record.json`](../evidence/qm9/topobench-core/training-record.json) and
+[`epoch-metrics.csv`](../evidence/qm9/topobench-core/epoch-metrics.csv).
 
 **Native NSAPH reproduction.** Pinned NSAPH revision `639e35e`; evidence:
-`run-record.json` and `metrics.jsonl`.
+[`run-record.json`](../evidence/qm9/native-reference/run-record.json) and
+[`epoch-metrics.jsonl`](../evidence/qm9/native-reference/epoch-metrics.jsonl).
 
-The SHA-256 digests of the records used for the tables and figures are:
+The GraphUniverse records are unchanged copies of the source records. The QM9
+epoch-metric series retain the source values with normalized CSV line endings.
+Public QM9 JSON records omit checkpoint paths and hardware identifiers while
+retaining the scientific protocol, results, audit checks, tensor shapes, and
+tensor hashes. The principal SHA-256 digests are:
 
 ```text
-17fab76c227d5ab581895d28fed5480257ceb51cc0e23ac673e0e11fef39d9d0  coordinate-free results.json
-6f93989221d9c272336806afe47e510a919da0c3e010de26b11a1110635204aa  structural-coordinate results.json
-660d79f220e02a461a73e3e5b4171eb5c3aef58496ae302135e4ce87a19a8761  model-core parity record
-574432d1915cf19606fb2a2a3a3954ea4f6e76f702a4015128575aa3e2f1a220  native 1,000-epoch run record
+17fab76c227d5ab581895d28fed5480257ceb51cc0e23ac673e0e11fef39d9d0  GraphUniverse coordinate-free results
+6f93989221d9c272336806afe47e510a919da0c3e010de26b11a1110635204aa  GraphUniverse structural-coordinate results
+1c0e22efcb3df88028bf9ccd9bfc2c657e413a836e267097983d7fce26429bc3  bounded physical-path summary
+ea37a432385c43af2f43b846b809b82aa3074adf409f789aaf46456aa60dc46c  model-core parity record
+07745404a6471c154ab1b51a8123d8523f13bd27ff5b209efb59f1c5bafd1cae  native 1,000-epoch run record
 66993a4ca71e4cb697d7585e9bb3eceee1bf12e57db0cc7527d3e3bc753532f8  native epoch metrics
-7296eda38f2dee74f3d5e065a4d8e23091f08c074e47936341cc97d4cb81cf78  TopoBench core training record
-da693aad89000bacb857632a4008dd0c9b0dea730ea38b42038d30b770509201  TopoBench core epoch metrics
-```
-
-For the reduced physical-path study, the archived configuration and metric
-digests are paired by variant:
-
-```text
-fixed coordinates:   hparams 01eec27b91f1d6de201fba7e2a2236c49f44a721abafba62a9d0b5f85cda6e9a
-                     metrics fe90e9460dddb719e7e63c02eaa4d3ead2c8d5a0c1a85e2965c485f65b22e51f
-dynamic coordinates: hparams b0c59fefaf1f5de25453ad948681a53c476402e399651b0dc6aa4e8c0e462b1a
-                     metrics 9d7f487ada2ae420ba0afbc6dcd50e39db2d99bb5ad05b422c5a3379a9e6cdcb
-full physical policy: hparams 41a17a75c5e8a890bbea3edc73aa4929af54f4925105ca3ae6b1cf2c935ca274
-                      metrics 5c926539ac79dd28c5cc71a78d7e85adb71e820c29d56d7ee09700dec348e996
+4f9e740a00537ccec522237cfc84d958c93b35425662266c726a2e3a5542c05a  TopoBench core training record
+144cda8d0ec79162b1005c9f1b9721fc4f8a4cc0a4cf1d6acde72581825c00c5  TopoBench core epoch metrics
 ```
